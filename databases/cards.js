@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose.connect(
-  "mongodb://localhost/mdi-card",
+  process.env.MONGODB_CONNECTION_URL,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
