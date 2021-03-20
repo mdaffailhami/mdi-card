@@ -24,6 +24,7 @@ class Card extends Component {
     userCard: {},
     cardNotFound: false,
     mobileVersion: false,
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -42,6 +43,7 @@ class Card extends Component {
           this.setState({ cardNotFound: true });
           return;
         }
+
         // Jika card ditemukan
         let {
           name,
@@ -67,7 +69,8 @@ class Card extends Component {
           },
         });
       })
-      .catch((err) => console.error("ERROR:", err));
+      .catch((err) => console.error("ERROR:", err))
+      .finally(() => this.setState({ isLoading: false }));
   }
 
   responsiveViews = () => {
@@ -94,6 +97,7 @@ class Card extends Component {
       socmedWidth,
       cardNotFound,
       mobileVersion,
+      isLoading,
     } = this.state;
     const {
       name,
@@ -108,6 +112,11 @@ class Card extends Component {
 
     return (
       <ScrollView>
+        {/* loader */}
+        {isLoading && (
+          <div dangerouslySetInnerHTML={{ __html: process.env.REACT_APP_PAGE_LOADER }} />
+        )}
+
         {/* Jika card tidak ditemukan */}
         {cardNotFound && (
           <View style={{ alignItems: "center", paddingTop: 80 }}>
@@ -129,7 +138,7 @@ class Card extends Component {
         )}
 
         {/* Jika card ditemukan */}
-        {!cardNotFound && (
+        {!cardNotFound && !isLoading && (
           <View
             style={{
               margin: "auto",

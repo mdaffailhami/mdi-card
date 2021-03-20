@@ -21,6 +21,9 @@ function Form(props) {
       whatsapp_number = whatsAppNumber.join("");
     }
 
+    // Menampilkan loader
+    document.getElementById("root").innerHTML = process.env.REACT_APP_PAGE_LOADER;
+
     fetch(process.env.REACT_APP_BACKEND_URL + "/api/card", {
       method: "POST",
       body: JSON.stringify({
@@ -43,7 +46,11 @@ function Form(props) {
           alert(data.message);
         }
       })
-      .catch((error) => console.warn(error));
+      .catch((error) => {
+        console.warn(error);
+        alert("Publish gagal, silahkan coba lagi!");
+        window.location.reload();
+      });
   };
 
   return (
