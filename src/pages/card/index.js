@@ -149,7 +149,7 @@ class Card extends Component {
               paddingVertical: 15,
               marginTop: 45,
               width: containerWidth,
-              backgroundColor: "#f9ffef",
+              backgroundColor: "#fbfbfb",
               shadowRadius: 4,
             }}
           >
