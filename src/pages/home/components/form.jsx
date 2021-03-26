@@ -44,6 +44,7 @@ function Form(props) {
           window.location = "/card-created?link=" + data.card_url;
         } else {
           alert(data.message);
+          window.location.reload();
         }
       })
       .catch((error) => {
